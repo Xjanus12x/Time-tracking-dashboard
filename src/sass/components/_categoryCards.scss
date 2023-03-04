@@ -1,0 +1,127 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/functions" as f;
+@use "../abstracts/mixins" as m;
+@use "../base/typograpgy" as t;
+
+.card[data-category="work"] {
+  background-color: map-get(v.$primaryColors, lightRedWork);
+}
+.card[data-category="play"] {
+  background-color: map-get(v.$primaryColors, softBluePlay);
+}
+.card[data-category="study"] {
+  background-color: map-get(v.$primaryColors, lightRedStudy);
+}
+.card[data-category="exercise"] {
+  background-color: map-get(v.$primaryColors, limeGreenExercise);
+}
+.card[data-category="social"] {
+  background-color: map-get(v.$primaryColors, violetSocial);
+}
+.card[data-category="self-care"] {
+  background-color: map-get(v.$primaryColors, softOrangeSelfCare);
+}
+
+.card {
+  @include m.b-radius(1rem, 1rem);
+  overflow: hidden;
+  position: relative;
+  overflow-y: hidden;
+
+  &:hover > &__hours {
+    transition: all 200ms ease-in-out;
+    background-color: map-get(v.$neutralColors, softPaleBlue);
+  }
+  &::after {
+    position: absolute;
+    top: -0.7rem;
+    right: 1rem;
+    z-index: 1;
+  }
+
+  &[data-category="work"]::after {
+    content: url(../../assets/icon-work.svg);
+  }
+  &[data-category="play"]::after {
+    content: url(../../assets/icon-play.svg);
+  }
+  &[data-category="study"]::after {
+    content: url(../../assets/icon-study.svg);
+  }
+  &[data-category="exercise"]::after {
+    content: url(../../assets/icon-exercise.svg);
+  }
+  &[data-category="social"]::after {
+    content: url(../../assets/icon-social.svg);
+  }
+  &[data-category="self-care"]::after {
+    content: url(../../assets/icon-self-care.svg);
+  }
+
+  &__hours {
+    @include m.b-radius(1rem, 0);
+    position: relative;
+    z-index: 2;
+    margin-top: 2.5rem;
+    background-color: map-get(v.$neutralColors, darkBlue);
+    padding: 1rem;
+    cursor: pointer;
+
+    div:first-child {
+      @include m.d-flex(0, sb, c);
+      img:hover {
+        filter: brightness(0) invert(1);
+      }
+    }
+    div:last-child {
+      @include m.d-flex(0, sb, c);
+
+      h2 {
+        @include m.font-weight(1);
+      }
+      p:last-child {
+        font-size: f.adjustFontSize("-", 0.3rem);
+        color: map-get(v.$neutralColors, paleBlue);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .card:is(
+      [data-category="work"],
+      [data-category="play"],
+      [data-category="study"],
+      [data-category="exercise"],
+      [data-category="social"],
+      [data-category="self-care"]
+    ) {
+    grid-row: span 3;
+  }
+
+  .card {
+    &__hours {
+      padding: 1.5rem 1.5rem;
+
+      div:first-child {
+        p {
+          font-size: f.adjustFontSize("-", 0.2rem);
+        }
+        img {
+          max-width: 1rem;
+        }
+      }
+      div:last-child {
+        flex-direction: column;
+        align-items: unset;
+        margin-top: 0.5rem;
+        h2 {
+          font-size: f.adjustFontSize("+", 1.4rem);
+        }
+        p:last-child {
+          font-size: f.adjustFontSize("-", 0.5rem);
+        }
+      }
+    }
+  }
+}

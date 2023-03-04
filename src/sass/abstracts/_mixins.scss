@@ -1,0 +1,44 @@
+@mixin d-flex($direction, $justify, $align) {
+  display: flex;
+  @if ($direction == 2) {
+    flex-direction: column;
+  }
+  @if ($justify == sb) {
+    justify-content: space-between;
+  }
+  @if ($justify == se) {
+    justify-content: space-evenly;
+  }
+  @if ($justify == c) {
+    justify-content: center;
+  }
+  @if ($align == c) {
+    align-items: center;
+  }
+}
+
+@mixin padding() {
+}
+
+@mixin b-radius($top, $bottom) {
+  border-radius: $top $top $bottom $bottom;
+}
+
+@mixin font-weight($fw) {
+  @if ($fw == 1) {
+    font-weight: 100;
+  }
+  @if ($fw == 2) {
+    font-weight: 200;
+  }
+  @if ($fw == 3) {
+    font-weight: 300;
+  }
+  @if ($fw == 4) {
+    font-weight: 400;
+  }
+  @if ($fw == 5) {
+    font-weight: 500;
+  }
+}
+

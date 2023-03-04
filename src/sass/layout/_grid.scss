@@ -1,0 +1,13 @@
+@use "../abstracts/variables" as v;
+.main {
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+}
+
+@media screen and (min-width: 600px) {
+  .main {
+    place-content: unset;
+    grid-template-columns: repeat(4, minmax(9rem,13rem));
+  }
+}

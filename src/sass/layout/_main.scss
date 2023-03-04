@@ -1,0 +1,25 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+@use "../base/typograpgy" as t;
+
+body {
+  background-color: map-get($neutralColors, veryDarkBlue);
+}
+.main {
+  padding: 4rem 2rem;
+  color: white;
+  font-family: t.$rubik;
+  font-size: t.$fontSize;
+}
+@media screen and (min-width: 600px) {
+  body {
+    display: grid;
+    min-height: 100vh;
+    min-height: 100dvh;
+    place-items: center;
+  }
+  .main {
+    padding: unset;
+    padding-inline: 10rem;
+  }
+}

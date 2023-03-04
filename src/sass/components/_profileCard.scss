@@ -1,0 +1,80 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/functions" as f;
+@use "../abstracts/mixins" as m;
+@use "../base/typograpgy" as t;
+
+.profile {
+  $profile: &;
+
+  @include m.b-radius(1rem, 1rem);
+  background-color: map-get($neutralColors, darkBlue);
+  .wrapper {
+    background-color: map-get(v.$primaryColors, blueProfile);
+    @include m.d-flex(0, 0, c);
+    @include m.b-radius(1rem, 1rem);
+
+    padding: 1.5rem;
+    gap: 1rem;
+    #{$profile}__picture {
+      max-width: 5rem;
+      border-radius: 100vw;
+      border: 2px solid white;
+    }
+    #{$profile}__description {
+      line-height: 1.3;
+      p:first-child {
+        color: map-get(v.$neutralColors, paleBlue);
+        font-size: f.adjustFontSize("-", 0.3rem);
+      }
+      h1 {
+        font-size: f.adjustFontSize("+", 0.5rem);
+        @include m.font-weight(1);
+      }
+    }
+  }
+  &__menu {
+    @include m.d-flex(0, se, c);
+    padding: 1rem;
+    button {
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+    button:where([data-state="inactive"]) {
+      color: map-get(v.$neutralColors, paleBlue);
+    }
+    button:where([data-state="active"], :hover) {
+      color: white;
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .profile {
+    $profile: &;
+    grid-row: span 6;
+    .wrapper {
+      flex-direction: column;
+      align-items: unset;
+      padding-bottom: 4rem;
+      gap: 2rem;
+      #{$profile}__picture {
+        max-width: 4rem;
+      }
+      #{$profile}__description {
+        h1 {
+          font-size: f.adjustFontSize("+", 0.9rem);
+          line-height: 1.1;
+        }
+      }
+    }
+    &__menu {
+      gap: 0.5rem;
+      flex-direction: column;
+      align-items: start;
+      padding: 1rem;
+      font-size: f.adjustFontSize("-", 0.3rem);
+      padding: 1.5rem;
+    }
+  }
+}

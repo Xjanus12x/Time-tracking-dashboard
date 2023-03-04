@@ -1,0 +1,18 @@
+@use "../base/typograpgy" as t;
+
+@function adjustFontSize($operator, $operand) {
+  $base-font-size: t.$fontSize;
+  $result: 0;
+  @if $operator == "+" {
+    $result: $base-font-size + $operand;
+  } @else if $operator == "-" {
+    $result: $base-font-size - $operand;
+  } @else if $operator == "*" {
+    $result: $base-font-size * $operand;
+  } @else if $operator == "/" {
+    $result: $base-font-size / $operand;
+  } @else {
+    @error 'Invalid operator: #{$operator}';
+  }
+  @return $result;
+}
